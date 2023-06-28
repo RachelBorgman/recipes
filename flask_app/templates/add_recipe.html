@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Add Recipe</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Add a New Recipe!</h1>
+        <a href="/recipes">back to recipes</a>
+        <a href="/logout">logout</a>
+    </div>
+    {% with messages = get_flashed_messages('recipes') %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flash">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form name="add_recipe" action="/add_recipe" method="post">
+        <div class="recipe_desc">
+            <div class="col_1">
+                <div class="recipe">
+                    <label for="name" class="recipe_name">Name:</label>
+                    <input type="text" name="name" style="width: 300px;">
+                </div>
+                <div class="recipe">
+                    <label for="description" class="recipe_description">Description:</label>
+                    <textarea name="description" cols="40" rows="10"></textarea>
+                </div>
+                <div class="recipe">
+                    <label for="instructions" class="recipe_instructions">Instructions:</label>
+                    <textarea name="instructions" cols="40" rows="15"></textarea>
+                </div>
+            </div>
+            <div class="col_2">
+                <div class="recipe">
+                    <label for="date_cooked" class="date_cooked">Date Cooked/Made:</label>
+                    <input type="date" name="date_cooked">
+                </div>
+                <div class="recipe">
+                    <fieldset><legend>Under 30 Minutes?</legend>
+                        <div>
+                            <input type="radio" name="under" value="yes" checked>
+                            <label for="under" class="under">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="under" value="no">
+                            <label for="over" class="under">No</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <button type="submit" class="btn primary" style="background-color: rgb(152, 105, 197);">Add Recipe</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

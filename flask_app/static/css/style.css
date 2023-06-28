@@ -1,0 +1,41 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:10px;
+}
+.reg_login, .recipe_desc{
+    display: flex;
+    justify-content: space-around;
+}
+h1{
+    color: rgb(152, 31, 179);
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+.input_register, .input_email_password, .recipe{
+    margin: 10px;
+}
+#header{
+    display: flex;
+    justify-content: space-between;
+}
+.links{
+    margin:20px;
+}
+a{
+    margin:20px;
+}
+th, td{
+    text-align: center;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+}
+.recipe_box{
+    border: 2px solid black;
+}
+.flash{
+    color:red;
+}

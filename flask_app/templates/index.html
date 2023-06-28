@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <h1>Recipe Share</h1>
+    <div class="reg_login">
+        <div class="col_1">
+            <form name="register" action="/register/user" method="POST">
+                <h2>Register</h2>
+                {% with messages = get_flashed_messages(category_filter=['register']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="flash">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="input_register">
+                    <label for="first_name" class="reg_input">First Name:</label>
+                    <input type="text" name="first_name">
+                </div>
+                <div class="input_register">
+                    <label for="last_name" class="reg_input">Last Name:</label>
+                    <input type="text" name="last_name">
+                </div>
+                <div class="input_register">
+                    <label for="email" class="reg_input">Email:</label>
+                    <input type="email" name="email">
+                </div>
+                <div class="input_register">
+                    <label for="password" class="reg_input">Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="input_register">
+                    <label for="c_pw" class="reg_input">Confirm Password:</label>
+                    <input type="c_pw" name="c_pw">
+                </div>
+                <button type="submit" class="btn primary">Register</button>
+            </form>
+        </div>
+        <div class="col_2">
+            <form name="login" action="/login/user" method="POST">
+                <h2>Log In</h2>
+                {% with messages = get_flashed_messages(category_filter=['login']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="flash">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="input_email_password">
+                    <label for="login_email" class="login_input">Email:</label>
+                    <input type="email" name="login_email">
+                </div>
+                <div class="input_email_password">
+                    <label for="login_password" class="login_input">Password:</label>
+                    <input type="password" name="login_password">
+                </div>
+                <button type="submit" class="btn primary">Log in</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

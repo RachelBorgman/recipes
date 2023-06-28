@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Edit Recipe</h1>
+        <a href="/recipes">back to recipes</a>
+        <a href="/logout">logout</a>
+    </div>
+    <form name="update" action="/update_recipe/{{recipe.id}}" method="POST">
+    {% with messages = get_flashed_messages('recipes') %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+        <div class="recipe_desc">
+            <div class="col_1">
+                <input type="hidden" id="id" name="id" value="{{recipe.id}}">
+                <div class="recipe">
+                    <label for="name" class="recipe_name">Name:</label>
+                    <input type="text" name="name" style="width: 300px;" value="{{recipe.name}}">
+                </div>
+                <div class="recipe">
+                    <label for="description" class="recipe_description">Description:</label>
+                    <textarea name="description" cols="40" rows="10" value="{{recipe.description}}">{{recipe.description}}</textarea>
+                </div>
+                <div class="recipe">
+                    <label for="instructions" class="recipe_instructions">Instructions:</label>
+                    <textarea name="instructions" cols="40" rows="15" value="{{recipe.instructions}}">{{recipe.instructions}}</textarea>
+                </div>
+            </div>
+            <div class="col_2">
+                <div class="recipe">
+                    <label for="date_cooked" class="date_cooked">Date Cooked/Made:</label>
+                    <input type="date" name="date_cooked" value="{{recipe.date_cooked.date()}}">
+                </div>
+                <div class="recipe">
+                    <fieldset><legend>Under 30 Minutes?</legend>
+                        <div>
+                            <input type="radio" name="under" value="yes"
+                            {% if recipe.under == 1 %}
+                                checked="checked"
+                            {% endif %}>
+                            <label for="under" class="under">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="under" value="no"
+                            {% if recipe.under == 0 %}
+                                checked="checked"
+                            {% endif %}
+                            >
+                            <label for="over" class="under">No</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <button type="submit" class="btn primary" style="background-color: rgb(152, 105, 197);">Update Recipe</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
